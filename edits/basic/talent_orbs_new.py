@@ -338,10 +338,10 @@ class SaveOrbs:
         """Print the orbs as a formatted list"""
         self.sort_orbs()
         helper.colored_text(
-            f"Total current orbs: &{sum([orb.count for orb in self.orbs.values()])}&"
+            f"총 현재 오브: &{sum([orb.count for orb in self.orbs.values()])}&"
         )
-        helper.colored_text(f"Total current types: &{len(self.orbs)}&")
-        print("Current Orbs:")
+        helper.colored_text(f"총 전류 유형: &{len(self.orbs)}&")
+        print("현재 오브:")
         for orb in self.orbs.values():
             helper.colored_text(f"&{orb.count}& {orb.orb.to_colortext()}")
 
@@ -371,27 +371,27 @@ class SaveOrbs:
         all_effects_str = "&,& ".join(all_effects)
 
         help_text = f"""Help:
-Available grades: &{all_grades_str}&
-Available attributes: &{all_attributes_str}&
-Available effects: &{all_effects_str}&
-&Note: Not all grades and effects will be available for all attributes.&
-Example inputs:
-    &aku& - selects &all aku& orbs
-    &red s& - selects &all red &orbs with &s& grade
-    &alien d attack& - selects the &alien &orb with &d& grade that increases &attack&.
-These can be switched around, so you can also do stuff like:
-    &d alien attack&
-    &s red&
-    &attack d alien&
-If you want to select &all& orbs then input:
+사용 가능한 등급: &{all_grades_str}&
+사용 가능한 속성:&{all_attributes_str}&
+사용 가능한 효과: &{all_effects_str}&
+&참고: 모든 속성에 대해 모든 등급과 효과를 사용할 수 있는 것은 아닙니다.&
+예시 입력:
+    &aku& - &모든 aku& 오브 선택합니다
+    &red s& - &s& 등급의 모든 빨간색 &오브 선택합니다
+    &에일리언 d 공격& - &공격&을 증가시키는 &d& 등급의 &에일리언 &오브를 선택합니다.
+전환할 수 있으므로 다음과 같은 작업도 수행할 수 있습니다.
+    &d 외계인 공격&
+    &빨간색&
+    &공격 d 외계인&
+&all& 오브를 선택하려면 다음을 입력하십시오.
     &*&
-If you want to do &multiple selections& then separate them with a &comma& like this:
-    &s black tough&,&d red massive&,&floating&
+&여러 선택&을 수행하려면 다음과 같이 &쉼표&로 구분하십시오.
+    &s 블랙 터프&,&d 레드 매시브&,&플로팅&
 """
         helper.colored_text(help_text)
 
         orb_input_selection = (
-            input("Select orbs:").lower().replace("angle", "angel").split(",")
+            input("오브 선택:").lower().replace("angle", "angel").split(",")
         )
         orb_selection: list[OrbInfo] = []
 
@@ -436,12 +436,12 @@ If you want to do &multiple selections& then separate them with a &comma& like t
         orb_selection.sort(key=lambda orb: orb.raw_orb_info.effect_id)
         orb_selection.sort(key=lambda orb: orb.raw_orb_info.attribute_id)
 
-        print("Selected orbs:")
+        print("오브 선택:")
         for orb in orb_selection:
             helper.colored_text((orb.to_colortext()))
 
         individual = (
-            input("Edit orb amounts individually? or all at once? (i/a)") == "i"
+            input("구의 양을 개별적으로 수정하시겠습니까? 아니면 한꺼번에? [한번에a](i/a)") == "i"
         )
         if individual:
             for orb in orb_selection:
@@ -451,7 +451,7 @@ If you want to do &multiple selections& then separate them with a &comma& like t
                 except KeyError:
                     orb_count = 0
                 orb_count = user_input_handler.colored_input(
-                    f"What do you want to set the amount of {orb.to_colortext()} to? (currently &{orb_count}&) (&q& to exit):"
+                    f"금액을 무엇으로 설정하시겠습니까? {orb.to_colortext()} to? (현재 &{orb_count}&) (&q& 종료하다):"
                 )
                 if orb_count == "q":
                     break
@@ -463,7 +463,7 @@ If you want to do &multiple selections& then separate them with a &comma& like t
 
         else:
             orb_count = user_input_handler.get_int(
-                "What do you want to set the amount of the selected orbs to?:"
+                "선택한 오브의 수량을 얼마로 설정하시겠습니까?:"
             )
             orb_count = helper.clamp_int(orb_count)
             for orb in orb_selection:
