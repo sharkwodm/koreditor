@@ -9,11 +9,11 @@ def edit_all_orbs(save_stats: dict[str, Any], orb_list: list[str]) -> dict[str, 
     """Handler for editing all talent orbs"""
 
     val = user_input_handler.colored_input(
-        "What do you want to set the value of all talent orbs to?:"
+        "모든 재능 구슬의 값을 무엇으로 설정하시겠습니까?:"
     )
     val = helper.check_int_max(val)
     if val is None:
-        print("Error please enter a number")
+        print("오류 숫자를 입력하십시오")
         return save_stats
 
     for orb in orb_list:
@@ -23,7 +23,7 @@ def edit_all_orbs(save_stats: dict[str, Any], orb_list: list[str]) -> dict[str, 
             continue
         save_stats["talent_orbs"][orb_id] = val
 
-    helper.colored_text(f"Set all talent orbs to &{val}&")
+    helper.colored_text(f"모든 재능 오브를 다음으로 설정 &{val}&")
     return save_stats
 
 
@@ -43,7 +43,7 @@ def edit_talent_orbs(save_stats: dict[str, Any]) -> dict[str, Any]:
             helper.colored_text(f"&{amount}& Unknown {orb} {text}")
 
     orbs_str = user_input_handler.colored_input(
-        "Enter the name of the orb that you want. You can enter multiple orb names separated by &spaces& to edit multiple at once or you can enter &all& to select all talent orbs to edit (e.g &angel a massive red d strong black b resistant&):"
+        "원하는 구의 이름을 입력합니다. &공백&로 구분된 여러 오브 이름을 입력하여 한 번에 여러 개를 편집하거나 &all&을 입력하여 편집할 모든 재능 오브를 선택할 수 있습니다.):"
     ).split(" ")
     if orbs_str[0] == "all":
         return edit_all_orbs(save_stats, orb_list)
@@ -77,20 +77,20 @@ def edit_talent_orbs(save_stats: dict[str, Any]) -> dict[str, Any]:
 
 
 ATTRIBUTES = [
-    "Red",
-    "Floating",
-    "Black",
-    "Metal",
-    "Angel",
-    "Alien",
-    "Zombie",
+    "빨간색",
+    "떠있는 적",
+    "검정",
+    "메탈",
+    "천사",
+    "에이리언",
+    "좀비",
 ]
 EFFECTS = [
-    "Attack",
-    "Defense",
-    "Strong",
-    "Massive",
-    "Resistant",
+    "공격",
+    "방어",
+    "강한",
+    "엄청난",
+    "내성",
 ]
 GRADES = [
     "D",
