@@ -1,0 +1,1 @@
+/data/data/com.termux/files/home/Documents/BCSFE_Python/config.yaml
