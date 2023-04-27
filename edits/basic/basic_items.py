@@ -147,7 +147,7 @@ def edit_engineers(save_stats: dict[str, Any]) -> dict[str, Any]:
 
     engineers = item.IntItem(
         name="오토토",
-        value=item.Int(save_stats["조수"]["Value"]),
+        value=item.Int(save_stats["engineers"]["Value"]),
         max_value=5,
     )
     engineers.edit()
